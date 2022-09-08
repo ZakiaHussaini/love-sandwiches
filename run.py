@@ -12,7 +12,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
-
+    
 def get_sales_data():
     """
     Get sales figures input from the user.
@@ -61,8 +61,13 @@ def update_sales_worksheet(data):
     sales_worksheet.append_row(data)
     print('sales worksheet updated successfully.\n')
 
+def main():
+    """
+    run all program functions
+    """
+    data = get_sales_data()
+    sales_data = [int(num) for num in data]
+    update_sales_worksheet(sales_data)
 
-
-data = get_sales_data()
-sales_data = [int(num) for num in data]
-update_sales_worksheet(sales_data)
+print('welcome to love sandwitches data automation')
+main()
